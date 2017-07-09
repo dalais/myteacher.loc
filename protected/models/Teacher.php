@@ -91,16 +91,20 @@ class Teacher extends CActiveRecord
     public static function teacherStrictlyByGroup($string = null)
     {
         $str = (string)$string;
-        $part = explode('|',$str);
-        $count = $part[0];
-        $pupil_id = $part[1];
-        $teacher = Yii::app()->db->createCommand(
-            "SELECT teacher_id,teachername 
+        $teacher = 'Пусто';
+        if (! is_null($str)) {
+            $part = explode('|',$str);
+            $count = (int)$part[0];
+            $pupil_id = $part[1];
+            $teacher = Yii::app()->db->createCommand(
+                "SELECT teacher_id,teachername 
                       FROM `myl_teacher_pupil` a
                         JOIN `myl_teacher` ON a.teacher_id = myl_teacher.id
                      GROUP BY teacher_id
                     HAVING count(1)={$count} and sum(pupil_id IN ({$pupil_id}))={$count};"
-        )->queryAll();
+            )->queryAll();
+        }
+
 
         /*$teacher = Yii::app()->db->createCommand(
             "SELECT teachername
@@ -125,17 +129,20 @@ class Teacher extends CActiveRecord
     public static function teacherByGroupInclusive($string = null)
     {
         $str = (string)$string;
-        $part = explode('|',$str);
-        $count = $part[0];
-        $pupil_id = $part[1];
+        $teacher = 'Пусто';
+        if (!is_null($str)) {
+            $part = explode('|',$str);
+            $count = $part[0];
+            $pupil_id = $part[1];
 
-        $teacher = Yii::app()->db->createCommand(
-            "SELECT teacher_id,teachername 
-                      FROM `myl_teacher_pupil` a
-                        JOIN `myl_teacher` ON a.teacher_id = myl_teacher.id
-                     GROUP BY teacher_id
-                    HAVING count(1)>{$count} and sum(pupil_id IN ({$pupil_id}))={$count};"
-        )->queryAll();
+            $teacher = Yii::app()->db->createCommand(
+                "SELECT teacher_id,teachername 
+                          FROM `myl_teacher_pupil` a
+                            JOIN `myl_teacher` ON a.teacher_id = myl_teacher.id
+                         GROUP BY teacher_id
+                        HAVING count(1)>{$count} and sum(pupil_id IN ({$pupil_id}))={$count};"
+            )->queryAll();
+        }
         /*$teacher = Yii::app()->db->createCommand(
             "SELECT teachername
                     FROM `myl_teacher_pupil` a

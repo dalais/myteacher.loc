@@ -11,3 +11,9 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
+function d($value = null, $die = 1){
+    echo 'Debug: <br /> <pre>';
+    var_dump($value);
+    echo '</pre>';
+    if ($die) die;
+}

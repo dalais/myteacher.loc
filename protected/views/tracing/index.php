@@ -40,6 +40,7 @@
         <td style="width: 300px">
             <p class="text-error">
                 <?php
+
                 if (isset($pupil)) {
                     if (!empty($pupil)) {
                         echo '<br>';
@@ -53,6 +54,11 @@
                         <br>есть ли такие имена в <a href="pupil/index">списке учеников</a></font>'.'</p>';
                     } else {
                         echo 'Пусто';
+                        echo '<hr>'.'<br>'.'<p>'.'<font style="color: #8a1f11" size="3">
+                            Внимание! Если в отображенном
+                        <br>списке нет некоторых введенных
+                        <br>вами имен, то, пожалуйста, проверьте
+                        <br>есть ли такие имена в <a href="pupil/index">списке учеников</a></font>'.'</p>';
                     }
                 }
 

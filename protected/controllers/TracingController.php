@@ -10,20 +10,31 @@ class TracingController extends Controller
         $teacher = null;
         $pupil = null;
         $teacherInc = null;
+
         if(isset($_POST['TracingForm']))
         {
             $model->attributes=$_POST['TracingForm'];
 
             if (! ctype_space($model->string_search) && ! empty($model->string_search)) {
+                $str_res = null;
                 $string = $model->string_search;
-                $data = Pupil::tracing($string);
-                $teacher = Teacher::teacherStrictlyByGroup($data);
-                $teacherInc = Teacher::teacherByGroupInclusive($data);
 
-                $pupil_str = '\''.str_replace(' ','\',\'',$string).'\'';
+                if (! empty($string)) {
+                    $str_trim = trim($string,' ');
+                    $str_res = '\'' . str_replace(' ', '\',\'', $str_trim) . '\'';
+                } else {
+                    $str_res = null;
+                }
+
+                $data = Pupil::tracing($str_res);
+
+                if ($data != null) {
+                    $teacher = Teacher::teacherStrictlyByGroup($data);
+                    $teacherInc = Teacher::teacherByGroupInclusive($data);
+                }
                 $pupil = Yii::app()->db->createCommand(
                     "SELECT * from  `myl_pupil`
-                  WHERE pupilname IN ({$pupil_str});"
+                  WHERE pupilname IN ({$str_res});"
                 )->queryAll();
             }
         }
