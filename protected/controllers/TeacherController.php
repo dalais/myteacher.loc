@@ -12,7 +12,33 @@ class TeacherController extends Controller
 	public function actionView($id)
 	{
         $model=Teacher::model()->findByPk($id);
-        $this->render('view',array('model'=>$model));
+
+        $id_p = null;
+        $teacher = null;
+        $teacherInc = null;
+        $counter = 0;
+        $result = null;
+        if (! empty($model->pupils)) {
+            foreach($model->pupils as $pupils) {
+                $id_p .= $pupils->id.',';
+                $counter++;
+            }
+            $str_id = rtrim($id_p,',');
+            $result = $counter . '|' . $str_id;
+
+            if ($counter == 0) {
+                $result = null;
+            }
+
+            if ($result != null) {
+                $teacherInc = Teacher::teacherByGroupInclusive($result);
+                $teacher = Teacher::teacherStrictlyByGroup($result);
+            }
+
+
+        }
+
+        $this->render('view',array('model'=>$model,'teacher'=>$teacher,'teacherInc'=>$teacherInc));
 	}
 
 	public function count($id)

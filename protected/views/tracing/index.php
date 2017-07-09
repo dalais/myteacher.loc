@@ -6,9 +6,11 @@
 <div class="form">
     <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tracing-form',
-        /*'clientOptions' => array(
+        'clientOptions' => array(
             'validateOnSubmit' => true,
-        ),*/
+
+        ),
+        'enableAjaxValidation'=>true,
     )); ?>
 
     <div class="row">
