@@ -7155,3 +7155,49 @@ Stack trace:
 REQUEST_URI=/tracing/index
 in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (37)
 in /home/user/www/myteacher.loc/index.php (13)
+2017/07/09 11:36:01 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '''')' at line 2. Выполнявшийся SQL-запрос: SELECT * from  `myl_pupil`
+                  WHERE pupilname IN ('Харитон','Денис','Георгий','Андрей','>',''');.
+in /home/user/www/myteacher.loc/protected/models/Pupil.php (98)
+in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (29)
+in /home/user/www/myteacher.loc/index.php (13)
+2017/07/09 11:36:01 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '''')' at line 2. The SQL statement executed was: SELECT * from  `myl_pupil`
+                  WHERE pupilname IN ('Харитон','Денис','Георгий','Андрей','>',''');' in /home/user/www/myteacher.loc/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/user/www/myteacher.loc/protected/models/Pupil.php(98): CDbCommand->queryAll()
+#2 /home/user/www/myteacher.loc/protected/controllers/TracingController.php(29): Pupil::tracing(''\xD0\xA5\xD0\xB0\xD1\x80\xD0\xB8\xD1\x82\xD0\xBE\xD0\xBD...')
+#3 /home/user/www/myteacher.loc/framework/web/actions/CInlineAction.php(49): TracingController->actionIndex()
+#4 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/user/www/myteacher.loc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/user/www/myteacher.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('tracing/index')
+#9 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#10 /home/user/www/myteacher.loc/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/tracing/index
+HTTP_REFERER=http://myteacher.loc/tracing/index
+---
+2017/07/09 11:40:31 [error] [system.db.CDbCommand] Не удалось выполнить CDbCommand::fetchAll(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Андрей')' at line 2. Выполнявшийся SQL-запрос: SELECT * from  `myl_pupil`
+                  WHERE pupilname IN ('Харитон','Денис','Георгий'','Андрей');.
+in /home/user/www/myteacher.loc/protected/models/Pupil.php (98)
+in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (30)
+in /home/user/www/myteacher.loc/index.php (13)
+2017/07/09 11:40:31 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand не удалось исполнить SQL-запрос: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Андрей')' at line 2. The SQL statement executed was: SELECT * from  `myl_pupil`
+                  WHERE pupilname IN ('Харитон','Денис','Георгий'','Андрей');' in /home/user/www/myteacher.loc/framework/db/CDbCommand.php:543
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/db/CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 /home/user/www/myteacher.loc/protected/models/Pupil.php(98): CDbCommand->queryAll()
+#2 /home/user/www/myteacher.loc/protected/controllers/TracingController.php(30): Pupil::tracing(''\xD0\xA5\xD0\xB0\xD1\x80\xD0\xB8\xD1\x82\xD0\xBE\xD0\xBD...')
+#3 /home/user/www/myteacher.loc/framework/web/actions/CInlineAction.php(49): TracingController->actionIndex()
+#4 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/user/www/myteacher.loc/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
+#6 /home/user/www/myteacher.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): CController->run('index')
+#8 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('tracing/index')
+#9 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#10 /home/user/www/myteacher.loc/index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/tracing/index
+HTTP_REFERER=http://myteacher.loc/tracing/index
+---
