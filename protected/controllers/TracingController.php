@@ -38,7 +38,15 @@ class TracingController extends Controller
                 )->queryAll();
             }
         }
-        $this->render('index', array('model' => $model, 'data' => $data, 'teacher' => $teacher, 'teacherInc' => $teacherInc, 'pupil' => $pupil));
+        $resWithMaxMatch = Teacher::teachersWithMaxMatch();
+        $this->render('index', array(
+            'model'      => $model,
+            'data'       => $data,
+            'teacher'    => $teacher,
+            'teacherInc' => $teacherInc,
+            'pupil'      => $pupil,
+            'resWithMaxMatch' => $resWithMaxMatch
+        ));
     }
 
     public function actionView()
@@ -53,11 +61,7 @@ class TracingController extends Controller
     }
 
 
-    /*
-    SET @c = 'xxx,yyy,zzz';
 
-    SELECT * from countries
-    WHERE FIND_IN_SET(countryname,@c);*/
 
     // Uncomment the following methods and override them if needed
     /*

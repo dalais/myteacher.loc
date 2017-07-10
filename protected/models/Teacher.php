@@ -162,6 +162,59 @@ class Teacher extends CActiveRecord
 
         return $teacher;
     }
+
+    public static function teachersWithMaxMatch()
+    {
+        $result = null;
+        $teachers = Yii::app()->db->createCommand(
+            "SELECT
+                        res.teachers
+                        FROM(
+                        SELECT
+                            CONCAT(
+                                myl_teacher.id,
+                                ', ',
+                                myl_pupil.id
+                            ) AS `teachers`,
+                            GROUP_CONCAT(
+                                tp1.pupil_id
+                            ORDER BY
+                                tp1.pupil_id SEPARATOR ','
+                            ) AS `students`
+                        FROM
+                            myl_teacher
+                        JOIN myl_teacher_pupil AS `tp1`
+                        ON
+                            tp1.teacher_id = myl_teacher.id
+                        JOIN myl_teacher_pupil tp2 ON
+                            tp2.pupil_id = tp1.pupil_id
+                        JOIN myl_pupil ON myl_pupil.id = tp2.teacher_id AND myl_pupil.id > myl_teacher.id
+                        GROUP BY
+                            myl_teacher.id,
+                            myl_pupil.id
+                        ORDER BY
+                            COUNT(*)
+                        DESC
+                    LIMIT 1
+                    ) res"
+        )->queryAll();
+
+        if (! empty($teachers)) {
+
+            $str = null;
+            foreach ($teachers as $item) {
+                $str = $item['teachers'];
+            }
+            $result = Yii::app()->db->createCommand(
+                "SELECT myl_teacher.teachername
+                        FROM myl_teacher
+                        WHERE id IN({$str})"
+            )->queryAll();
+        } else {
+            $result = null;
+        }
+        return $result;
+    }
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
@@ -173,3 +226,18 @@ class Teacher extends CActiveRecord
         return parent::model($className);
     }
 }
+
+/*select concat(myl_teacher.id, ', ', myl_pupil.id) as `teachers`, group_concat(tp1.pupil_id order by tp1.pupil_id separator ',')
+ as `students`
+from myl_teacher
+join myl_teacher_pupil as `tp1`
+  on tp1.teacher_id = myl_teacher.id
+join myl_teacher_pupil tp2
+  on tp2.pupil_id = tp1.pupil_id
+join myl_pupil
+  on myl_pupil.id = tp2.teacher_id and myl_pupil.id > myl_teacher.id
+group by myl_teacher.id, myl_pupil.id
+order by count(*) desc
+limit 1;*/
+
+//https://ru.stackoverflow.com/questions/453222/

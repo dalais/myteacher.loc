@@ -2,7 +2,19 @@
     Здесь вы можете сделать поиск учителей по определенному набору учеников
 </p>
 <font size="2" color="#5f9ea0">Введите имена учеников через пробел и нажмите "Найти"</font>
+<div style="position:relative; float:right;">
+    <?php
+        if (! empty($resWithMaxMatch)) {
+            echo '<h5>Учителя с максимальным совпадением<br> состава учеников</h5>';
 
+            foreach ($resWithMaxMatch as $item) {
+                echo '<h4 style="color: #8a1f11">'.$item['teachername'].'</h4>';
+            }
+
+            echo '<br><font size="1">Может быть не единственной парой <br> из одинаковых по составу совпадений</font>';
+        }
+    ?>
+</div>
 <div class="form">
     <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'tracing-form',
@@ -24,6 +36,7 @@
     </div>
 
     <?php $this->endWidget(); ?>
+
 </div>
 
 <br>
@@ -32,7 +45,7 @@
 <table class="table table-bordered">
     <thead>
     <tr>
-        <th><h5>Искомый набор учеников</h5></th>
+        <th><p>Искомый набор учеников</p></th>
         <th><p>Учителя у которых ТОЛЬКО<br> данный набор учеников</p></th>
         <th><p>Учителя у которых данный набор<br> В ТОМ ЧИСЛЕ среди его учеников</p></th>
     </tr>

@@ -7260,3 +7260,88 @@ Stack trace:
 #17 {main}
 REQUEST_URI=/tracing/index
 ---
+2017/07/10 08:09:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in /home/user/www/myteacher.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /home/user/www/myteacher.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://myteacher.loc/
+---
+2017/07/10 08:14:16 [error] [exception.CException] exception 'CException' with message 'Не определено свойство "CGridView.pagination".' in /home/user/www/myteacher.loc/framework/base/CComponent.php:173
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CWidgetFactory.php(161): CComponent->__set('pagination', Array)
+#1 /home/user/www/myteacher.loc/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(TeacherPupilController), 'zii.widgets.gri...', Array)
+#2 /home/user/www/myteacher.loc/framework/web/CBaseController.php(180): CBaseController->createWidget('zii.widgets.gri...', Array)
+#3 /home/user/www/myteacher.loc/protected/modules/admin/views/teacherPupil/index.php(57): CBaseController->widget('zii.widgets.gri...', Array)
+#4 /home/user/www/myteacher.loc/framework/web/CBaseController.php(126): require('/home/user/www/...')
+#5 /home/user/www/myteacher.loc/framework/web/CBaseController.php(95): CBaseController->renderInternal('/home/user/www/...', Array, true)
+#6 /home/user/www/myteacher.loc/framework/web/CController.php(869): CBaseController->renderFile('/home/user/www/...', Array, true)
+#7 /home/user/www/myteacher.loc/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#8 /home/user/www/myteacher.loc/protected/modules/admin/controllers/TeacherPupilController.php(91): CController->render('index', Array)
+#9 /home/user/www/myteacher.loc/framework/web/actions/CInlineAction.php(49): TeacherPupilController->actionIndex()
+#10 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#11 /home/user/www/myteacher.loc/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#12 /home/user/www/myteacher.loc/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#13 /home/user/www/myteacher.loc/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#14 /home/user/www/myteacher.loc/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#15 /home/user/www/myteacher.loc/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#16 /home/user/www/myteacher.loc/framework/web/CController.php(291): CFilterChain->run()
+#17 /home/user/www/myteacher.loc/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): CController->run('index')
+#19 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('admin/teacherPu...')
+#20 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#21 /home/user/www/myteacher.loc/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/admin/teacherPupil/index/id/32
+HTTP_REFERER=http://myteacher.loc/admin/teacherPupil/create
+---
+2017/07/10 08:17:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "favicon.ico".' in /home/user/www/myteacher.loc/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#2 /home/user/www/myteacher.loc/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://myteacher.loc/admin/teacherPupil/index/id/32
+---
+2017/07/10 10:32:41 [error] [php] Array to string conversion (/home/user/www/myteacher.loc/protected/models/Teacher.php:206)
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/user/www/myteacher.loc/framework/web/CController.php(286): TracingController->runAction()
+#2 /home/user/www/myteacher.loc/framework/web/CController.php(265): TracingController->runActionWithFilters()
+#3 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): TracingController->run()
+#4 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/user/www/myteacher.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/tracing/index
+in /home/user/www/myteacher.loc/protected/models/Teacher.php (206)
+in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (41)
+in /home/user/www/myteacher.loc/index.php (13)
+2017/07/10 10:36:11 [error] [php] Undefined index: teachers (/home/user/www/myteacher.loc/protected/models/Teacher.php:203)
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/user/www/myteacher.loc/framework/web/CController.php(286): TracingController->runAction()
+#2 /home/user/www/myteacher.loc/framework/web/CController.php(265): TracingController->runActionWithFilters()
+#3 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): TracingController->run()
+#4 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/user/www/myteacher.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/tracing/index
+in /home/user/www/myteacher.loc/protected/models/Teacher.php (203)
+in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (41)
+in /home/user/www/myteacher.loc/index.php (13)
+2017/07/10 10:36:26 [error] [php] Trying to get property of non-object (/home/user/www/myteacher.loc/protected/models/Teacher.php:203)
+Stack trace:
+#0 /home/user/www/myteacher.loc/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/user/www/myteacher.loc/framework/web/CController.php(286): TracingController->runAction()
+#2 /home/user/www/myteacher.loc/framework/web/CController.php(265): TracingController->runActionWithFilters()
+#3 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(282): TracingController->run()
+#4 /home/user/www/myteacher.loc/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#5 /home/user/www/myteacher.loc/framework/base/CApplication.php(184): CWebApplication->processRequest()
+#6 /home/user/www/myteacher.loc/index.php(13): CWebApplication->run()
+REQUEST_URI=/tracing/index
+in /home/user/www/myteacher.loc/protected/models/Teacher.php (203)
+in /home/user/www/myteacher.loc/protected/controllers/TracingController.php (41)
+in /home/user/www/myteacher.loc/index.php (13)
